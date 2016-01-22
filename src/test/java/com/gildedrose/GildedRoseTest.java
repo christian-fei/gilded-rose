@@ -1,18 +1,30 @@
 package com.gildedrose;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 
 public class GildedRoseTest {
-
+    
     @Test
-    public void foo() {
-        Item[] items = new Item[] { new Item("foo", 0, 0) };
+	public void
+	increases_quality_by_3_for_concert_ticket_when_sellin_less_than_6_and_quality_less_than_50() throws Exception {
+        int initialQuality = 30;
+		Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 5, initialQuality) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals("foo", app.items[0].name);
-    }
+        assertEquals(initialQuality + 3, app.items[0].quality);    	
+	}
+    
+    @Test
+	public void
+	increases_quality_by_2_for_concert_ticket_when_sellin_less_than_11_and_quality_less_than_50() throws Exception {
+        int initialQuality = 30;
+		Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 10, initialQuality) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(initialQuality + 2, app.items[0].quality);    	
+	}
 
 }
