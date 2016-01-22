@@ -41,17 +41,17 @@ class GildedRose {
             }
 
             if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!isConcertTicket(i)) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                            	decreaseItemQuality(items[i]);
-                            }
-                        }
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality;
-                    }
-                } else {
+				if (!items[i].name.equals("Aged Brie")) {
+					if (!isConcertTicket(i)) {
+						if (items[i].quality > 0) {
+							if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+								decreaseItemQuality(items[i]);
+							}
+						}
+					} else {
+						items[i].quality = items[i].quality - items[i].quality;
+					}
+				} else {
                     if (items[i].quality < 50) {
                         increaseItemQuality(items[i]);
                     }
