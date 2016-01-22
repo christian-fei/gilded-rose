@@ -26,5 +26,20 @@ public class GildedRoseTest {
         app.updateQuality();
         assertEquals(initialQuality + 2, app.items[0].quality);    	
 	}
+    
+    @Test
+	public void
+	increases_quality_for_aged_brie_while_quality_is_less_than_50() throws Exception {
+    	for(int initialQuality=0; initialQuality <= 50; initialQuality++) {
+    		Item[] items = new Item[] { new Item("Aged Brie", 10, initialQuality) };
+    		GildedRose app = new GildedRose(items);
+    		app.updateQuality();
+    		if( initialQuality < 50 ){
+    			assertEquals(initialQuality + 1, app.items[0].quality);    	
+    		} else {
+    			assertEquals(initialQuality, app.items[0].quality);    	
+    		}
+    	}
+	}
 
 }
