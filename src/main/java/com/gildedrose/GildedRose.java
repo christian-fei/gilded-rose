@@ -13,23 +13,23 @@ class GildedRose {
                     && !isConcertTicket(i)) {
                 if (items[i].quality > 0) {
                     if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
+                    	decreaseItemQuality(items[i]);
                     }
                 }
             } else {
                 if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+                    increaseItemQuality(items[i]);
 
                     if (isConcertTicket(i)) {
                         if (items[i].sellIn < 11) {
                             if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
+                                increaseItemQuality(items[i]);
                             }
                         }
 
                         if (items[i].sellIn < 6) {
                             if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
+                                increaseItemQuality(items[i]);
                             }
                         }
                     }
@@ -37,7 +37,7 @@ class GildedRose {
             }
 
             if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn = items[i].sellIn - 1;
+                decreaseItemQuality(items[i]);
             }
 
             if (items[i].sellIn < 0) {
@@ -45,7 +45,7 @@ class GildedRose {
                     if (!isConcertTicket(i)) {
                         if (items[i].quality > 0) {
                             if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].quality = items[i].quality - 1;
+                            	decreaseItemQuality(items[i]);
                             }
                         }
                     } else {
@@ -53,12 +53,20 @@ class GildedRose {
                     }
                 } else {
                     if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
+                        increaseItemQuality(items[i]);
                     }
                 }
             }
         }
     }
+
+	private int decreaseItemQuality(Item item) {
+		return item.sellIn = item.sellIn - 1;
+	}
+
+	private void increaseItemQuality(Item item) {
+		item.quality = item.quality + 1;
+	}
 
 	private boolean isConcertTicket(int index) {
 		return items[index].name.equals("Backstage passes to a TAFKAL80ETC concert");
